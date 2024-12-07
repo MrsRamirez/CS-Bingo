@@ -1,113 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bingo Clue Game</title>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Varela+Round&display=swap" rel="stylesheet">
-    <style>
-        html, body {
-            margin: 0px;
-            padding: 0px;
-            height: 100%;
-            background-color: #fff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Escape Room</title>
+  <style>
+    /* General page styling */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
 
-        .header {
-            font-family: 'Archivo Narrow', arial, helvetica, sans-serif;
-            font-size: 24px;
-            color: #555;
-            background-color: #ddd;
-            border-radius: 20px;
-            margin: 20px auto;
-            text-align: center;
-            padding: 10px;
-            width: 80%;
-        }
+    h1 {
+      margin: 20px;
+      color: #333;
+    }
 
-        .bingo-card {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-        }
+    #instructions,
+    #success,
+    #challenge-section {
+      display: none;
+    }
 
-        .bingo-cell {
-            font-family: 'Varela Round', arial, sans-serif;
-            font-size: 16px;
-            color: #333;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-            padding: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    /* Style for challenge interface */
+    #challenge-section {
+      margin: 30px;
+      padding: 20px;
+      border: 2px solid #333;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
 
-        .bingo-cell:hover {
-            background-color: #ddd;
-        }
+    #success {
+      margin: 30px;
+      padding: 20px;
+      color: green;
+      font-size: 18px;
+      border: 2px solid green;
+      border-radius: 5px;
+      display: inline-block;
+    }
 
-        .bingo-cell.selected {
-            background-color: #88c057;
-            color: #fff;
-        }
+    /* Input field for password challenge */
+    input[type="text"] {
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border: 1px solid #333;
+    }
 
-        .footer {
-            font-family: 'Arial', sans-serif;
-            font-size: 12px;
-            color: #888;
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+  </style>
 </head>
 <body>
-    <div class="header">Bingo Clue Game</div>
-    
-    <div class="bingo-card" id="bingoCard">
-        <div class="bingo-cell">HTML</div>
-        <div class="bingo-cell">Python</div>
-        <div class="bingo-cell">Debugging</div>
-        <div class="bingo-cell">Build a Website</div>
-        <div class="bingo-cell">GitHub</div>
-        <div class="bingo-cell">JavaScript</div>
-        <div class="bingo-cell">API</div>
-        <div class="bingo-cell">Open Source</div>
-        <div class="bingo-cell">Mobile App</div>
-        <div class="bingo-cell">CSS</div>
-        <div class="bingo-cell">Game Dev</div>
-        <div class="bingo-cell">Code Break</div>
-        <div class="bingo-cell">Favorite IDE</div>
-        <div class="bingo-cell">SQL</div>
-        <div class="bingo-cell">Learned Today</div>
-        <div class="bingo-cell">Java</div>
-        <div class="bingo-cell">Hackathon</div>
-        <div class="bingo-cell">Stack Overflow</div>
-        <div class="bingo-cell">Algorithm</div>
-        <div class="bingo-cell">Git</div>
-        <div class="bingo-cell">Cloud Computing</div>
-        <div class="bingo-cell">Full Stack</div>
-        <div class="bingo-cell">Data Structures</div>
-        <div class="bingo-cell">Function</div>
-    </div>
+  <h1>🔑 Virtual Escape Room Simulation 🔑</h1>
 
-    <div class="footer">Click on the cells to mark them as selected.</div>
+  <!-- Instructions section -->
+  <div id="instructions">
+    <p>Welcome to the escape room simulation! Complete the challenge to unlock the door.</p>
+    <p>To solve the puzzle, find the correct password.</p>
+  </div>
 
-    <script>
-        const cells = document.querySelectorAll('.bingo-cell');
+  <!-- Section for the challenge -->
+  <div id="challenge-section">
+    <h3>🕹️ Solve the Puzzle to Escape</h3>
+    <p>Enter the password below to unlock:</p>
+    <input type="text" id="passwordInput" placeholder="Enter your password">
+    <button onclick="checkPassword()">Submit Password</button>
+  </div>
 
-        cells.forEach(cell => {
-            cell.addEventListener('click', () => {
-                cell.classList.toggle('selected');
-            });
-        });
-    </script>
+  <!-- Success message -->
+  <div id="success">
+    🎉 You Escaped! Congratulations! 🎉
+  </div>
+
+  <script>
+    var loaded = false;
+
+    window.onload = function () {
+      loaded = true;
+      checkAndShowInstructions();
+    };
+
+    // Check if we should show instructions
+    function checkAndShowInstructions() {
+      const serverToken = "e/2PACX-1vScqS-Q3QqtClc_eiVYyQPGPMnb4K0fFb99U_RB-DhUoM54ZLvfPIcGhg3i-JkVVfJaYepW1r-MareR";
+      const comparisonToken = "1ubDVulJpW7B2NDDuHMA1CtBwRxGiehQQZzeJpExdcwQ";
+
+      if (serverToken === comparisonToken) {
+        document.getElementById("instructions").style.display = "block";
+        document.getElementById("challenge-section").style.display = "block";
+      } else {
+        console.log("Tokens do not match. Starting challenge...");
+      }
+    }
+
+    function checkPassword() {
+      const userPassword = document.getElementById("passwordInput").value.trim();
+      const correctPassword = "escape123";
+
+      if (userPassword === correctPassword) {
+        document.getElementById("success").style.display = "inline-block";
+        document.getElementById("challenge-section").style.display = "none";
+      } else {
+        alert("❌ Incorrect password! Try again.");
+      }
+    }
+  </script>
 </body>
 </html>
