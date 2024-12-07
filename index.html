@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,6 +70,7 @@
     }
   </style>
 </head>
+
 <body>
   <h1>🔑 Virtual Escape Room Simulation 🔑</h1>
 
@@ -92,31 +94,37 @@
   </div>
 
   <script>
-    var loaded = false;
+    let tokenCheckPassed = false;
 
-    window.onload = function () {
-      loaded = true;
-      checkAndShowInstructions();
-    };
-
-    // Check if we should show instructions
-    function checkAndShowInstructions() {
+    // Simulate token logic
+    function simulateTokenCheck() {
       const serverToken = "e/2PACX-1vScqS-Q3QqtClc_eiVYyQPGPMnb4K0fFb99U_RB-DhUoM54ZLvfPIcGhg3i-JkVVfJaYepW1r-MareR";
       const comparisonToken = "1ubDVulJpW7B2NDDuHMA1CtBwRxGiehQQZzeJpExdcwQ";
 
       if (serverToken === comparisonToken) {
+        tokenCheckPassed = true;
         document.getElementById("instructions").style.display = "block";
         document.getElementById("challenge-section").style.display = "block";
       } else {
-        console.log("Tokens do not match. Starting challenge...");
+        alert("🔐 Token check failed. Escape room will not load.");
       }
     }
 
+    window.onload = function () {
+      simulateTokenCheck();
+    };
+
+    // Function to check the password logic
     function checkPassword() {
-      const userPassword = document.getElementById("passwordInput").value.trim();
+      const enteredPassword = document.getElementById("passwordInput").value.trim();
       const correctPassword = "escape123";
 
-      if (userPassword === correctPassword) {
+      if (!tokenCheckPassed) {
+        alert("🔐 Token logic failed. Contact admin.");
+        return;
+      }
+
+      if (enteredPassword === correctPassword) {
         document.getElementById("success").style.display = "inline-block";
         document.getElementById("challenge-section").style.display = "none";
       } else {
@@ -125,4 +133,5 @@
     }
   </script>
 </body>
+
 </html>
