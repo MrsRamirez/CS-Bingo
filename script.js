@@ -1,26 +1,26 @@
-// Declare variables for terms and clues
+// Global Variables
 var clueList;
 var termList;
-var vocabList;
+var vocabList = '';
 var currentTerm;
 var currentClue;
 var termToggle;
 var chosenTerm = [];
 var chosenClue = [];
-var navIndex;
+var navIndex = 0;
 
-// Initialize the Bingo game
+// Initialize the game
 reset();
 compileList();
 
-// SPLASH SCREEN BUTTON (When the game starts)
+// Splash Screen Button Event
 onEvent("splash_button", "click", function() {
   hideElement("splash_screen");
   hideElement("splash_button");
   vocabListDisplay();
 });
 
-// DICE BUTTON (Randomly selects a term and clue)
+// Random Term Button Event (Dice Button)
 onEvent("button_random", "click", function() {
   termToggle = false;
   pickTerm();
@@ -32,7 +32,7 @@ onEvent("button_random", "click", function() {
   arrowUpdate();
 });
 
-// MAGNIFYING GLASS BUTTON (Toggles between term and clue)
+// Magnifying Glass Button Event (Toggle Term)
 onEvent("button_term", "click", function() {
   hideElement("list_highlight");
   hideElement("dice_highlight");
@@ -42,7 +42,7 @@ onEvent("button_term", "click", function() {
   arrowUpdate();
 });
 
-// LIST BUTTON (Displays all terms and clues in a list)
+// List Button Event (Show List of All Terms)
 onEvent("button_list", "click", function() {
   termToggle = false;
   chosenTermDisplay();
@@ -52,7 +52,7 @@ onEvent("button_list", "click", function() {
   arrowUpdate();
 });
 
-// BACK BUTTON (Navigates to the previous term/clue)
+// Back Button Event
 onEvent("back_button", "click", function() {
   var toggleTemp = termToggle;
   navIndex--;
@@ -62,7 +62,7 @@ onEvent("back_button", "click", function() {
   termToggleCheck();
 });
 
-// FORWARD BUTTON (Navigates to the next term/clue)
+// Forward Button Event
 onEvent("forward_button", "click", function() {
   var toggleTemp = termToggle;
   navIndex++;
@@ -72,9 +72,9 @@ onEvent("forward_button", "click", function() {
   termToggleCheck();
 });
 
-// Pick a random term and its clue
+// Function to pick a random term
 function pickTerm() {
-  if (termList.length > 0){
+  if (termList.length > 0) {
     var rand = randomNumber(0, termList.length - 1);
     currentTerm = termList[rand];
     currentClue = clueList[rand];
@@ -89,14 +89,14 @@ function pickTerm() {
   }
 }
 
-// Compile the list of terms into a string
-function compileList(){
-  for (var i = 0; i < termList.length; i++){
+// Function to compile the list of terms for display
+function compileList() {
+  for (var i = 0; i < termList.length; i++) {
     vocabList += (termList[i] + "\n");
   }
 }
 
-// Display the list of all terms and clues
+// Function to display all terms in a list
 function vocabListDisplay() {
   setText("clueTextbox", " ");
   setText("termTextbox", " ");
@@ -108,7 +108,7 @@ function vocabListDisplay() {
   setText("clueTextbox", vocabList);
 }
 
-// Display the chosen terms and clues
+// Function to display the chosen terms
 function chosenTermDisplay() {
   setText("clueTextbox", " ");
   setText("termTextbox", " ");
@@ -118,13 +118,13 @@ function chosenTermDisplay() {
   showElement("chosenText");
   setProperty("clueTextbox", "font-size", 12);
   var chosenTermList = "";
-  for (var i = 0; i < chosenTerm.length; i++){
+  for (var i = 0; i < chosenTerm.length; i++) {
     chosenTermList += chosenTerm[i] + "\n";
   }
   setText("clueTextbox", chosenTermList);
 }
 
-// Display the current clue and term
+// Function to select a clue to display
 function clueSelect() {
   setText("clueTextbox", " ");
   setText("termTextbox", " ");
@@ -133,13 +133,13 @@ function clueSelect() {
   hideElement("listText");
   hideElement("chosenText");
   setProperty("clueTextbox", "font-size", 14);
-  if (currentClue != null && currentTerm != null){
+  if (currentClue != null && currentTerm != null) {
     setText("clueTextbox", currentClue);
     setText("termTextbox", currentTerm);
   }
 }
 
-// Toggle term visibility
+// Function to toggle whether to show the term or not
 function termToggleCheck() {
   if (termToggle) {
     showElement("termTextbox");
@@ -150,7 +150,7 @@ function termToggleCheck() {
   }
 }
 
-// Update navigation arrows based on current term
+// Function to update the navigation arrows (back and forward)
 function arrowUpdate() {
   if (navIndex > 0 && chosenTerm.length > 0) {
     showElement("back_arrow_active");
@@ -161,6 +161,7 @@ function arrowUpdate() {
     showElement("back_arrow_grey");
     hideElement("back_button");
   }
+
   if (navIndex >= 0 && navIndex < chosenTerm.length - 1) {
     showElement("forward_arrow_active");
     hideElement("forward_arrow_grey");
@@ -172,7 +173,7 @@ function arrowUpdate() {
   }
 }
 
-// Navigate between terms
+// Function to navigate through chosen terms
 function navigate() {
   hideElement("dice_highlight");
   hideElement("glass_highlight");
@@ -183,7 +184,7 @@ function navigate() {
   clueSelect();
 }
 
-// Navigate to the next term
+// Function to navigate forward through chosen terms
 function navigateForward() {
   hideElement("dice_highlight");
   hideElement("glass_highlight");
@@ -194,42 +195,37 @@ function navigateForward() {
   clueSelect();
 }
 
-// Reset the Bingo game
+// Function to reset the game
 function reset() {
-  // Define the terms (coding terms) and their definitions
-  termList = [
-    "HTML", "Python", "Debugging", "Build a Website", "GitHub", 
-    "JavaScript", "API", "Open Source", "Mobile App", "CSS", 
-    "Game Dev", "Code Break", "Favorite IDE", "SQL", "Learned Today", 
-    "Java", "Hackathon", "Stack Overflow", "Algorithm", "Git", 
-    "Cloud Computing", "Full Stack", "Data Structures", "Function"
+  clueList = [
+    "A markup language for creating web pages",
+    "A high-level, interpreted programming language",
+    "The process of finding and fixing errors in code",
+    "A tool for managing code versions and collaborating on projects",
+    "A scripting language that allows interactive content on websites",
+    "A method for two software components to communicate",
+    "A code or software that is made freely available for anyone to use or modify",
+    "An application developed for mobile devices",
+    "A style sheet language used to describe the look of a document",
+    "The process of creating video games",
+    "A puzzle game that involves deciphering a code",
+    "A developer’s most-used tool for writing code",
+    "A language used for managing data in databases",
+    "What you learned during a coding session",
+    "A widely-used programming language known for its portability",
+    "An online platform for developers to ask questions and share knowledge",
+    "A set of steps used to solve a problem or perform a task",
+    "A system for managing and sharing code repositories",
+    "Remote servers that store data and run applications",
+    "A complete development stack for both frontend and backend",
+    "The structures that hold and organize data in a program",
+    "A block of reusable code to perform a specific task"
   ];
 
-  clueList = [
-    "HTML is the language used to create and structure web pages.",
-    "Python is a versatile programming language known for its easy syntax.",
-    "Debugging is finding and fixing errors in your code.",
-    "Building a website involves using HTML, CSS, and JavaScript to create a webpage.",
-    "GitHub is a platform to store and share code, using Git version control.",
-    "JavaScript is used to create interactive elements on websites.",
-    "API is a set of protocols that allows one software to communicate with another.",
-    "Open Source software allows anyone to view, modify, and share the code.",
-    "A mobile app is an application designed for smartphones and tablets.",
-    "CSS is used to style the appearance of web pages.",
-    "Game Dev refers to the process of creating video games, involving programming, design, and testing.",
-    "Code Break refers to the moment when you solve a challenging coding problem.",
-    "Your favorite IDE is the environment you use to write and test your code.",
-    "SQL is a language for managing and querying databases.",
-    "Learned Today is a reminder of what new things you've learned in coding.",
-    "Java is a widely-used programming language used in web apps and Android development.",
-    "A Hackathon is a collaborative event where developers work on software projects.",
-    "Stack Overflow is a popular website for asking and answering programming questions.",
-    "An Algorithm is a set of instructions to solve a problem or complete a task.",
-    "Git is a version control system to manage changes in your code.",
-    "Cloud Computing allows you to store and process data over the internet.",
-    "Full Stack development involves working on both the front-end and back-end of a web application.",
-    "Data Structures are ways of organizing and storing data efficiently.",
-    "A Function is a reusable block of code that performs a specific task."
+  termList = [
+    "HTML", "Python", "Debugging", "GitHub", "JavaScript", "API", "Open Source", "Mobile App", "CSS", "Game Dev", "Code Break", 
+    "Favorite IDE", "SQL", "Learned Today", "Java", "Hackathon", "Stack Overflow", "Algorithm", "Git", "Cloud Computing", 
+    "Full Stack", "Data Structures", "Function"
   ];
 
   vocabList = "";
@@ -237,6 +233,9 @@ function reset() {
   currentTerm = null;
   currentClue = null;
   termToggle = false;
+  hideElement("dice_highlight");
+  hideElement("glass_highlight");
+  hideElement("list_highlight");
   navIndex = 0;
   chosenTerm = [];
   chosenClue = [];
