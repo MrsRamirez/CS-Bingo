@@ -96,18 +96,11 @@
   <script>
     let tokenCheckPassed = false;
 
-    // Simulate token logic
+    // Simulate token logic success by default
     function simulateTokenCheck() {
-      const serverToken = "e/2PACX-1vScqS-Q3QqtClc_eiVYyQPGPMnb4K0fFb99U_RB-DhUoM54ZLvfPIcGhg3i-JkVVfJaYepW1r-MareR";
-      const comparisonToken = "1ubDVulJpW7B2NDDuHMA1CtBwRxGiehQQZzeJpExdcwQ";
-
-      if (serverToken === comparisonToken) {
-        tokenCheckPassed = true;
-        document.getElementById("instructions").style.display = "block";
-        document.getElementById("challenge-section").style.display = "block";
-      } else {
-        alert("🔐 Token check failed. Escape room will not load.");
-      }
+      tokenCheckPassed = true; // Simulate token logic passed for simplicity
+      document.getElementById("instructions").style.display = "block";
+      document.getElementById("challenge-section").style.display = "block";
     }
 
     window.onload = function () {
