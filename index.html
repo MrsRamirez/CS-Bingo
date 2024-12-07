@@ -20,7 +20,9 @@
     }
 
     #instructions,
-    #success,
+    #success {
+  display: none;
+}
     #challenge-section {
       display: none;
     }
@@ -119,6 +121,8 @@
 
       if (enteredPassword === correctPassword) {
         document.getElementById("success").style.display = "inline-block";
+        document.getElementById("success").style.display = "block";
+
         document.getElementById("challenge-section").style.display = "none";
       } else {
         alert("❌ Incorrect password! Try again.");
