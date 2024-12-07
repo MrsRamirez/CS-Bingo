@@ -1,24 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Clue Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            background-color: #fff;
+        }
 
-<html>
-  <head>
-    <title>Remix: Unit 6: CSP Bingo Clue Generator</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preload" href="applab/fa-brands-400.woff2" as="font">
-    <link rel="preload" href="applab/fa-solid-900.woff2" as="font">
-    <link rel="preload" href="applab/fa-regular-400.woff2" as="font">
-    <link rel="preload" href="applab/fa-v4compatibility.woff2" as="font">
-    <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+        .header {
+            font-family: 'Archivo Narrow', arial, helvetica, sans-serif;
+            font-size: 24px;
+            color: #555;
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 10px;
+            width: 80%;
+        }
+
+        .bingo-card {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .bingo-cell {
+            font-family: 'Varela Round', arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .bingo-cell:hover {
+            background-color: #ddd;
+        }
+
+        .bingo-cell.selected {
+            background-color: #88c057;
+            color: #fff;
+        }
+
+        .footer {
+            font-family: 'Arial', sans-serif;
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Bingo Clue Game</div>
+    
+    <div class="bingo-card" id="bingoCard">
+        <div class="bingo-cell">HTML</div>
+        <div class="bingo-cell">Python</div>
+        <div class="bingo-cell">Debugging</div>
+        <div class="bingo-cell">Build a Website</div>
+        <div class="bingo-cell">GitHub</div>
+        <div class="bingo-cell">JavaScript</div>
+        <div class="bingo-cell">API</div>
+        <div class="bingo-cell">Open Source</div>
+        <div class="bingo-cell">Mobile App</div>
+        <div class="bingo-cell">CSS</div>
+        <div class="bingo-cell">Game Dev</div>
+        <div class="bingo-cell">Code Break</div>
+        <div class="bingo-cell">Favorite IDE</div>
+        <div class="bingo-cell">SQL</div>
+        <div class="bingo-cell">Learned Today</div>
+        <div class="bingo-cell">Java</div>
+        <div class="bingo-cell">Hackathon</div>
+        <div class="bingo-cell">Stack Overflow</div>
+        <div class="bingo-cell">Algorithm</div>
+        <div class="bingo-cell">Git</div>
+        <div class="bingo-cell">Cloud Computing</div>
+        <div class="bingo-cell">Full Stack</div>
+        <div class="bingo-cell">Data Structures</div>
+        <div class="bingo-cell">Function</div>
+    </div>
+
+    <div class="footer">Click on the cells to mark them as selected.</div>
+
     <script>
-      function setExportConfig(config) { window.EXPORT_OPTIONS = config; }
+        const cells = document.querySelectorAll('.bingo-cell');
+
+        cells.forEach(cell => {
+            cell.addEventListener('click', () => {
+                cell.classList.toggle('selected');
+            });
+        });
     </script>
-    <script src="https://studio.code.org/projects/applab/oMwXaxy08_ULS0YV5TGiWBMwbKgN-OpO-jeA3lAiQPY/export_config?script_call=setExportConfig"></script>
-    <script src="applab/applab-api.js"></script>
-    <script src="https://www.google.com/jsapi"></script>
-    <link rel="stylesheet" href="applab/applab.css">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div id="divApplab" class="appModern running" style="width: 320px; height: 450px; display: block;"><div class="screen" tabindex="1" data-theme="default" id="Main_Screen" style="display: block; height: 450px; width: 320px; left: 0px; top: 0px; position: absolute; z-index: 0; background-color: rgb(255, 255, 255); background-size: 320px 450px; background-image: url(&quot;https://studio.code.org/blockly/media/1x1.gif&quot;);" data-canonical-image-url="" data-image-type="default"><img src="https://images.code.org/46e1064dc50524c6bdd6d42f4abfbfa2-BCG_bar2.png" data-canonical-image-url="https://images.code.org/46e1064dc50524c6bdd6d42f4abfbfa2-BCG_bar2.png" data-image-type="url" data-object-fit="contain" id="BCG_bar" style="height: 90px; width: 320px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 0px; top: 365px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/0d5ac1cbc55b66863e72608298006b8b-logo_transparent.png" data-canonical-image-url="https://images.code.org/0d5ac1cbc55b66863e72608298006b8b-logo_transparent.png" data-image-type="url" data-object-fit="contain" id="BCN_logo" style="height: 30px; width: 35px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 5px; top: 13px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/c4146a4e82532c1cc5b64aa95bc80fb0-BCG_highlight2.png" data-canonical-image-url="https://images.code.org/c4146a4e82532c1cc5b64aa95bc80fb0-BCG_highlight2.png" data-image-type="url" data-object-fit="contain" id="dice_highlight" style="height: 100px; width: 100px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 0px; top: 360px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/4924ab239c5aa08776ea6e71a2c696ec-BCG_dice.png" data-canonical-image-url="https://images.code.org/4924ab239c5aa08776ea6e71a2c696ec-BCG_dice.png" data-image-type="url" data-object-fit="contain" id="BCG_random" style="height: 50px; width: 50px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 25px; top: 385px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/f8bdc372424b314b766a0794d6803a7f-BCG_highlight2.png" data-canonical-image-url="https://images.code.org/f8bdc372424b314b766a0794d6803a7f-BCG_highlight2.png" data-image-type="url" data-object-fit="contain" id="glass_highlight" style="height: 100px; width: 100px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 112px; top: 360px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/a88842e3d27d22d74565d5f1aac95d44-BCG_mag2.png" data-canonical-image-url="https://images.code.org/a88842e3d27d22d74565d5f1aac95d44-BCG_mag2.png" data-image-type="url" data-object-fit="contain" id="BCG_term" style="height: 50px; width: 50px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 135px; top: 385px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/f8bdc372424b314b766a0794d6803a7f-BCG_highlight2.png" data-canonical-image-url="https://images.code.org/f8bdc372424b314b766a0794d6803a7f-BCG_highlight2.png" data-image-type="url" data-object-fit="contain" id="list_highlight" style="height: 100px; width: 100px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 225px; top: 360px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/c6010cd135ddf3aece3ff922a771c6ae-BCG_list.png" data-canonical-image-url="https://images.code.org/c6010cd135ddf3aece3ff922a771c6ae-BCG_list.png" data-image-type="url" data-object-fit="contain" id="BCG_list" style="height: 50px; width: 50px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 250px; top: 385px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/ef0ad5f9ae77ab3f269ca38dda25b82a-BCG_clueBox3.png" data-canonical-image-url="https://images.code.org/ef0ad5f9ae77ab3f269ca38dda25b82a-BCG_clueBox3.png" data-image-type="url" data-object-fit="contain" id="BCG_background" style="height: 265px; width: 345px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: -10px; top: 60px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/7faa6df94d13a6b5b936052d7e19dd54-BCG_title2.png" data-canonical-image-url="https://images.code.org/7faa6df94d13a6b5b936052d7e19dd54-BCG_title2.png" data-image-type="url" data-object-fit="contain" id="BCG_Title" style="height: 35px; width: 265px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 46px; top: 14px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><button id="button_random" style="padding: 0px; margin: 0px; border-style: solid; height: 65px; width: 65px; background-color: rgba(255, 164, 0, 0); color: rgba(255, 255, 255, 0); border-color: rgb(77, 87, 95); border-radius: 4px; border-width: 0px; font-family: &quot;Arial Black&quot;, Gadget, sans-serif; font-size: 15px; position: absolute; left: 16px; top: 376px;">Button</button><button id="button_term" style="padding: 0px; margin: 0px; border-style: solid; height: 65px; width: 65px; background-color: rgba(255, 164, 0, 0); color: rgba(255, 255, 255, 0); border-color: rgb(77, 87, 95); border-radius: 4px; border-width: 0px; font-family: &quot;Arial Black&quot;, Gadget, sans-serif; font-size: 15px; position: absolute; left: 130px; top: 375px;">Button</button><button id="button_list" style="padding: 0px; margin: 0px; border-style: solid; height: 65px; width: 65px; background-color: rgba(255, 164, 0, 0); color: rgba(255, 255, 255, 0); border-color: rgb(77, 87, 95); border-radius: 4px; border-width: 0px; font-family: &quot;Arial Black&quot;, Gadget, sans-serif; font-size: 15px; position: absolute; left: 240px; top: 377px;">Button</button><img src="https://images.code.org/46e1d0e63d3c3ba7d859829c7dc472e5-BCG_clueText.png" data-canonical-image-url="https://images.code.org/46e1d0e63d3c3ba7d859829c7dc472e5-BCG_clueText.png" data-image-type="url" data-object-fit="contain" id="clueText" style="height: 30px; width: 180px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 5px; top: 65px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/093f8213b1df86ad02c13cb9ced01929-BCG_termText.png" data-canonical-image-url="https://images.code.org/093f8213b1df86ad02c13cb9ced01929-BCG_termText.png" data-image-type="url" data-object-fit="contain" id="termText" style="height: 40px; width: 185px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 5px; top: 280px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/4fae864d972d28e0afddb0936d88a5ae-BCG_listText.png" data-canonical-image-url="https://images.code.org/4fae864d972d28e0afddb0936d88a5ae-BCG_listText.png" data-image-type="url" data-object-fit="contain" id="listText" style="height: 30px; width: 195px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 85px; top: 65px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><div contenteditable="true" class="textArea" id="clueTextbox" style="width: 290px; height: 185px; border-style: solid; background-color: rgba(242, 242, 242, 0); color: rgb(77, 87, 95); border-color: rgba(255, 255, 255, 0); border-radius: 2px; border-width: 0px; font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14px; padding: 5px 15px; position: absolute; left: 15px; top: 110px; margin: 0px;">Icons:<div>Dice- Choose a random vocabulary definition</div><div><br></div><div>Magnifying Glass- Reveal vocabulary word</div><div><br></div><div>List- Default view. Show all vocabulary words.</div></div><div contenteditable="true" class="textArea" id="termTextbox" style="width: 260px; height: 35px; border-style: solid; background-color: rgba(242, 242, 242, 0); color: rgb(77, 87, 95); border-color: rgba(255, 255, 255, 0); border-radius: 2px; border-width: 0px; font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 17px; padding: 5px 15px; position: absolute; left: 55px; top: 285px; margin: 0px;"> </div><img src="https://images.code.org/f051dedc7eb2fbc462672d81590a74cc-back_grey.png" data-canonical-image-url="https://images.code.org/f051dedc7eb2fbc462672d81590a74cc-back_grey.png" data-image-type="url" data-object-fit="contain" id="back_arrow_grey" style="height: 30px; width: 30px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 10px; top: 332px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/7dd280068254c4a0ff4dc348320d4db9-forward_grey.png" data-canonical-image-url="https://images.code.org/7dd280068254c4a0ff4dc348320d4db9-forward_grey.png" data-image-type="url" data-object-fit="contain" id="forward_arrow_grey" style="height: 30px; width: 30px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 283px; top: 333px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/efda6a3415121bfd4a20559df40d8761-back_active.png" data-canonical-image-url="https://images.code.org/efda6a3415121bfd4a20559df40d8761-back_active.png" data-image-type="url" data-object-fit="contain" id="back_arrow_active" style="height: 30px; width: 30px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 10px; top: 332px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/6ddf031066d89a4fb3d535ed8359db99-forward_active.png" data-canonical-image-url="https://images.code.org/6ddf031066d89a4fb3d535ed8359db99-forward_active.png" data-image-type="url" data-object-fit="contain" id="forward_arrow_active" style="height: 30px; width: 30px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 283px; top: 333px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><button id="back_button" style="padding: 0px; margin: 0px; border-style: solid; height: 35px; width: 40px; background-color: rgba(255, 164, 0, 0); color: rgba(255, 255, 255, 0); border-color: rgb(77, 87, 95); border-radius: 4px; border-width: 0px; font-family: &quot;Arial Black&quot;, Gadget, sans-serif; font-size: 15px; position: absolute; left: 5px; top: 330px;">Button</button><button id="forward_button" style="padding: 0px; margin: 0px; border-style: solid; height: 35px; width: 40px; background-color: rgba(255, 164, 0, 0); color: rgba(255, 255, 255, 0); border-color: rgb(77, 87, 95); border-radius: 4px; border-width: 0px; font-family: &quot;Arial Black&quot;, Gadget, sans-serif; font-size: 15px; position: absolute; left: 275px; top: 330px;">Button</button><img src="https://images.code.org/322be007d4cb2df92f676dadf39c1276-BCG_chosenWords.png" data-canonical-image-url="https://images.code.org/322be007d4cb2df92f676dadf39c1276-BCG_chosenWords.png" data-image-type="url" data-object-fit="contain" id="chosenText" style="height: 40px; width: 185px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: 80px; top: 60px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><img src="https://images.code.org/8cf3017facb71482d6aeef41dba4488f-BCG_splash3.png" data-canonical-image-url="https://images.code.org/8cf3017facb71482d6aeef41dba4488f-BCG_splash3.png" data-image-type="url" data-object-fit="contain" id="splash_screen" style="height: 285px; width: 330px; border-style: solid; border-width: 0px; border-color: rgb(0, 0, 0); border-radius: 0px; position: absolute; left: -6px; top: 49px; margin: 0px; object-fit: contain; font-family: &quot;object-fit: contain;&quot;;"><button id="splash_button" style="padding: 0px; margin: 0px; border-style: solid; height: 395px; width: 320px; background-color: rgba(255, 164, 0, 0); color: rgba(255, 255, 255, 0); border-color: rgb(77, 87, 95); border-radius: 4px; border-width: 0px; font-family: &quot;Arial Black&quot;, Gadget, sans-serif; font-size: 15px; position: absolute; left: 0px; top: 55px;">Button</button></div></div>
-  </body>
+</body>
 </html>
