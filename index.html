@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Virtual Escape Room</title>
+  <title>Virtual Escape Room Simulation</title>
   <style>
     /* General page styling */
     body {
@@ -20,15 +20,15 @@
     }
 
     #instructions,
-    #success {
-  display: none;
-}
-    #challenge-section {
+    #success,
+    #challenge-section,
+    #second-challenge-section {
       display: none;
     }
 
     /* Style for challenge interface */
-    #challenge-section {
+    #challenge-section,
+    #second-challenge-section {
       margin: 30px;
       padding: 20px;
       border: 2px solid #333;
@@ -76,31 +76,39 @@
 <body>
   <h1>🔑 Virtual Escape Room Simulation 🔑</h1>
 
-  <!-- Instructions section -->
+  <!-- Instructions Section -->
   <div id="instructions">
     <p>Welcome to the escape room simulation! Complete the challenge to unlock the door.</p>
-    <p>To solve the puzzle, find the correct password.</p>
+    <p>To escape the first room, solve the first puzzle by finding the correct password.</p>
   </div>
 
-  <!-- Section for the challenge -->
+  <!-- First Challenge Section -->
   <div id="challenge-section">
-    <h3>🕹️ Solve the Puzzle to Escape</h3>
-    <p>Enter the password below to unlock:</p>
-    <input type="text" id="passwordInput" placeholder="Enter your password">
-    <button onclick="checkPassword()">Submit Password</button>
+    <h3>🕹️ First Puzzle - Room 1</h3>
+    <p>Enter the password below to escape the first room:</p>
+    <input type="text" id="passwordInput1" placeholder="Enter the first password">
+    <button onclick="checkFirstPassword()">Submit Password</button>
   </div>
 
-  <!-- Success message -->
+  <!-- Second Challenge Section (appears after solving first challenge) -->
+  <div id="second-challenge-section">
+    <h3>🕹️ Second Puzzle - Room 2</h3>
+    <p>Enter the new password below to unlock the next stage:</p>
+    <input type="text" id="passwordInput2" placeholder="Enter the second password">
+    <button onclick="checkSecondPassword()">Submit Password</button>
+  </div>
+
+  <!-- Success Message Section -->
   <div id="success">
     🎉 You Escaped! Congratulations! 🎉
   </div>
 
   <script>
-    let tokenCheckPassed = false;
+    let stageOneComplete = false;
+    let stageTwoComplete = false;
 
-    // Simulate token logic success by default
+    // Simulate token check for initialization
     function simulateTokenCheck() {
-      tokenCheckPassed = true; // Simulate token logic passed for simplicity
       document.getElementById("instructions").style.display = "block";
       document.getElementById("challenge-section").style.display = "block";
     }
@@ -109,21 +117,31 @@
       simulateTokenCheck();
     };
 
-    // Function to check the password logic
-    function checkPassword() {
-      const enteredPassword = document.getElementById("passwordInput").value.trim();
-      const correctPassword = "escape123";
+    // Check the first password
+    function checkFirstPassword() {
+      const enteredPassword = document.getElementById("passwordInput1").value.trim();
+      const correctPassword1 = "escape123";
 
-      if (!tokenCheckPassed) {
-        alert("🔐 Token logic failed. Contact admin.");
-        return;
-      }
-
-      if (enteredPassword === correctPassword) {
-        document.getElementById("success").style.display = "inline-block";
-        document.getElementById("success").style.display = "block";
-
+      if (enteredPassword === correctPassword1) {
+        alert("✅ First Puzzle Solved! Proceed to the next stage.");
         document.getElementById("challenge-section").style.display = "none";
+        document.getElementById("second-challenge-section").style.display = "block";
+        stageOneComplete = true;
+      } else {
+        alert("❌ Incorrect password! Try again.");
+      }
+    }
+
+    // Check the second password
+    function checkSecondPassword() {
+      const enteredPassword = document.getElementById("passwordInput2").value.trim();
+      const correctPassword2 = "escape456";
+
+      if (enteredPassword === correctPassword2) {
+        alert("✅ Second Puzzle Solved! You have successfully escaped.");
+        document.getElementById("second-challenge-section").style.display = "none";
+        document.getElementById("success").style.display = "block";
+        stageTwoComplete = true;
       } else {
         alert("❌ Incorrect password! Try again.");
       }
