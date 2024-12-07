@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Bingo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splash_screen" class="splash-screen">
+    <h1>Welcome to Coding Bingo!</h1>
+    <button id="splash_button">Start Game</button>
+  </div>
+
+  <!-- Main Game Interface -->
+  <div id="game_screen" class="game-screen" style="display: none;">
+    <div id="controls">
+      <button id="button_random">🎲 Random</button>
+      <button id="button_term">🔍 Toggle Term</button>
+      <button id="button_list">📋 List</button>
+    </div>
+
+    <!-- Term & Clue Display -->
+    <div id="term_display">
+      <h2 id="termTextbox"></h2>
+      <p id="clueTextbox"></p>
+    </div>
+
+    <!-- Navigation -->
+    <div id="navigation">
+      <button id="back_button">&lt; Back</button>
+      <button id="forward_button">Forward &gt;</button>
+    </div>
+
+    <!-- Term List -->
+    <div id="listText" class="list-text" style="display: none;">
+      <h3>All Terms</h3>
+      <pre id="clueTextbox"></pre>
+    </div>
+    
+    <!-- Chosen Terms -->
+    <div id="chosenText" class="chosen-text" style="display: none;">
+      <h3>Chosen Terms</h3>
+      <pre id="clueTextbox"></pre>
+    </div>
+    
+    <!-- Highlights for navigation -->
+    <div id="dice_highlight" class="highlight"></div>
+    <div id="glass_highlight" class="highlight"></div>
+    <div id="list_highlight" class="highlight"></div>
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
